@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Warehouse } from '../warehouse';
 import { WarehouseService } from '../warehouse.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -11,7 +10,7 @@ import { Location } from '@angular/common';
 })
 export class WarehouseManagerComponent {
   warehouse: any;
-
+  id: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,11 +19,12 @@ export class WarehouseManagerComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getHero();
+    this.getWarehouse();
   }
 
-  getHero(): void {
+  getWarehouse(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    this.id = id;
     this.warehouseService.getWarehouse(id)
       .subscribe(warehouse => this.warehouse = warehouse);
   }
@@ -36,15 +36,19 @@ export class WarehouseManagerComponent {
 
   save(): void {
     if (this.warehouse) {
-      this.warehouseService.updateWarehouse(this.warehouse)
-        .subscribe(() => this.goBack());
+      this.warehouseService.updateWarehouse(this.warehouse, this.id)
+      .subscribe(data => {if (data) {
+        this.goBack();
+      }
+      });
     }
   }
 
-  delete(): void {
-    if(this.warehouse !==undefined){
-    this.warehouseService.deleteWarehouse(this.warehouse.id).subscribe();
+    delete (): void {
+      if(this.warehouse !== undefined){
+      this.warehouseService.deleteWarehouse(this.warehouse.id).subscribe();
     }
     this.goBack();
   }
+
 }

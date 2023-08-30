@@ -1,1 +1,17 @@
-<p>product-manager works!</p>
+<div *ngIf="product">
+    <h1>Manage {{product?.name}}</h1>
+    <div>
+        <label for="product">Name: </label>
+        <input id="product.name" [(ngModel)]="product.name" placeholder="Product" />
+        <label for="product">Description: </label>
+        <input id="product.description" [(ngModel)]="product.description" placeholder="Info" />
+        <label for="product">Image URL: </label>
+        <input id="product.imageURL" [(ngModel)]="product.imageURL" placeholder="URL" />
+        </div>
+
+
+    <br><br><br>
+    <button type="button" (click)="goBack()">go back</button>
+    <button type="button" (click)="save()">save</button>
+    <button type="button" class="delete" title="delete product" (click)="delete()">x</button>
+</div>

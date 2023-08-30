@@ -1,1 +1,7 @@
-<p>products works!</p>
+<h3>Products</h3>
+<a routerLink="/products/create">Add New Product</a>
+<ul class="products">
+    <li *ngFor="let product of products">
+        <span class="badge"><a routerLink="/products/{{product.productId}}">Manage</a></span>{{product.name}} {{product.description}} {{product.imageURL}}
+    </li>
+</ul>

@@ -1,7 +1,19 @@
-<div>
-    {{warehouse?.name}} {{warehouse?.capacity}} {{warehouse?.city}} {{warehouse?.country}}
-   
-<br><br><br>
-<button type="button" (click)="goBack()">go back</button>
-<button type="button" (click)="save()">save</button>
-<button type="button" class="delete" title="delete warehouse" (click)="delete()">x</button>
+<div *ngIf="warehouse">
+    <h1>Manage {{warehouse?.name}} Warehouse</h1>
+    <div>
+        <label for="warehouse">Name: </label>
+        <input id="warehouse.name" [(ngModel)]="warehouse.name" placeholder="Warehouse" />
+        <label for="warehouse">Capacity: </label>
+        <input id="warehouse.capacity" [(ngModel)]="warehouse.capacity" placeholder="100" />
+        <label for="warehouse">City: </label>
+        <input id="warehouse.city" [(ngModel)]="warehouse.city" placeholder="City" />
+        <label for="warehouse">Country: </label>
+        <input id="warehouse.country" [(ngModel)]="warehouse.country" placeholder="Country" />
+    </div>
+
+
+    <br><br><br>
+    <button type="button" (click)="goBack()">go back</button>
+    <button type="button" (click)="save()">save</button>
+    <button type="button" class="delete" title="delete warehouse" (click)="delete()">x</button>
+</div>

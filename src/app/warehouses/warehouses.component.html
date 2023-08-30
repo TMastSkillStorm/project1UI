@@ -1,5 +1,5 @@
 <h3>Warehouses</h3>
-
+<a routerLink="/warehouses/create">Create New Warehouse</a>
 <ul class="warehouses">
     <li *ngFor="let warehouse of warehouses">
         <span class="badge"><a routerLink="/warehouses/{{warehouse.id}}">Manage</a></span>{{warehouse.name}} {{warehouse.capacity}} {{warehouse.city}} {{warehouse.country}}

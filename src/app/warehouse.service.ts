@@ -14,14 +14,14 @@ export class WarehouseService {
   private warehouseUrl = 'http://localhost:8080/v1/warehouses';  // URL to web api
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'allow': 'PUT' })
   };
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  /** GET heroes from the server */
+  /** GET warehouse from the server */
   getWarehouses(): Observable<Warehouse[]> {
     return this.http.get<Warehouse[]>(this.warehouseUrl)
       .pipe(
@@ -30,21 +30,8 @@ export class WarehouseService {
       );
   }
 
-  /** GET hero by id. Return `undefined` when id not found */
-  getHeroNo404<Data>(id: number): Observable<Warehouse> {
-    const url = `${this.warehouseUrl}/?id=${id}`;
-    return this.http.get<Warehouse[]>(url)
-      .pipe(
-        map(warehouse => warehouse[0]), // returns a {0|1} element array
-        tap(h => {
-          const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} Warehouse id=${id}`);
-        }),
-        catchError(this.handleError<Warehouse>(`getWarehouse id=${id}`))
-      );
-  }
 
-  /** GET hero by id. Will 404 if id not found */
+  /** GET warehouse by id. Will 404 if id not found */
   getWarehouse(id: number): Observable<Warehouse> {
     const url = `${this.warehouseUrl}/${id}`;
     return this.http.get<Warehouse>(url).pipe(
@@ -60,7 +47,7 @@ export class WarehouseService {
   addWarehouse(warehouse: Warehouse): Observable<Warehouse> {
     return this.http.post<Warehouse>(this.warehouseUrl, warehouse, this.httpOptions).pipe(
       tap((newWarehouse: Warehouse) => this.log(`added Warehouse w/ id=${newWarehouse.id}`)),
-      catchError(this.handleError<Warehouse>('addHero'))
+      catchError(this.handleError<Warehouse>('addWarehouse'))
     );
   }
 
@@ -69,16 +56,17 @@ export class WarehouseService {
     const url = `${this.warehouseUrl}/${id}`;
 
     return this.http.delete<Warehouse>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
-      catchError(this.handleError<Warehouse>('deleteHero'))
+      tap(_ => this.log(`deleted warehouse id=${id}`)),
+      catchError(this.handleError<Warehouse>('deleteWarehouse'))
     );
   }
 
-  /** PUT: update the hero on the server */
-  updateWarehouse(warehouse: Warehouse): Observable<any> {
-    return this.http.put(this.warehouseUrl, warehouse, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${warehouse.id}`)),
-      catchError(this.handleError<any>('updateHero'))
+  /** PUT: update the warehouse on the server */
+  updateWarehouse(warehouse: Warehouse, id:number): Observable<any> {
+    const url = `${this.warehouseUrl}/${id}`;
+    return this.http.put(url, warehouse, this.httpOptions).pipe(
+      tap(_ => this.log(`updated warehouse id=${warehouse.id}`)),
+      catchError(this.handleError<any>('updateWarehouse'))
     );
   }
 
@@ -103,7 +91,7 @@ export class WarehouseService {
     };
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a warehouseService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`WarehouseService: ${message}`);
   }
