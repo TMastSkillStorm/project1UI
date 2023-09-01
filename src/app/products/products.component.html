@@ -1,7 +1,26 @@
-<h3>Products</h3>
-<a routerLink="/products/create">Add New Product</a>
-<ul class="products">
-    <li *ngFor="let product of products">
-        <span class="badge"><a routerLink="/products/{{product.productId}}">Manage</a></span>{{product.name}} {{product.description}} {{product.imageURL}}
-    </li>
-</ul>
+<h2>Products</h2>
+<!--button to create new product-->
+<p-button label="Create New Product" styleClass="p-button-outlined p-button-secondary" class="navButton" routerLink="/products/create"
+    icon="pi pi-file-edit"></p-button>
+
+    <!--displays all products in the system-->
+<p-table [value]="products" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Manage Product</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td><p-button label="Manage" styleClass="p-button-outlined"
+                    routerLink="/products/{{product.productId}}"></p-button></td>
+            <td><img src="{{product.imageURL}}" alt="Default Bear Photo" onerror="this.src='../assets/errorBear.jpg';">
+            </td>
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -16,6 +16,7 @@ export class WarehousesComponent implements OnInit{
     this.getWarehouses();
   }
 
+  //gets warehouses 
   getWarehouses(): void {
     this.warehouseService.getWarehouses()
     .subscribe(warehouses => this.warehouses = warehouses);

@@ -1,17 +1,29 @@
 <div *ngIf="product">
-    <h1>Manage {{product?.name}}</h1>
-    <div>
-        <label for="product">Name: </label>
-        <input id="product.name" [(ngModel)]="product.name" placeholder="Product" />
-        <label for="product">Description: </label>
-        <input id="product.description" [(ngModel)]="product.description" placeholder="Info" />
-        <label for="product">Image URL: </label>
-        <input id="product.imageURL" [(ngModel)]="product.imageURL" placeholder="URL" />
+    <!--Navigation button, save button, and delete button-->
+    <h2>Manage {{product?.name}}</h2>
+    <p-button label="Back to Products" styleClass="p-button-outlined" class="navButton" (click)="goBack()"
+        icon="pi pi-caret-left"></p-button>
+    <p-button label="Save Changes" styleClass="p-button-outlined p-button-secondary" class="navButton" (click)="save()"
+        icon="pi pi-save"></p-button>
+    <p-button label="Delete" styleClass="p-button-outlined p-button-danger" class="navButton" (click)="delete()"
+        icon="pi pi-trash"></p-button>
+
+<!--input to edit the rpoduct-->
+    <div class="form">
+        <div class="inputBox"> 
+            <label class="title" for="product">Name: </label>
+            <input class="input" id="product.name" [(ngModel)]="product.name" placeholder="Product" pInputText required/>
         </div>
+        <div class="inputBox"> 
+            <label class="title" for="product">Description: </label>
+            <textarea class="input" rows="5" cols="30" pInputTextarea [autoResize]="true" id="product.name"
+                id="product.description" [(ngModel)]="product.description" placeholder="Info" required></textarea>
+        </div>
+        <div class="inputBox"> 
+            <label class="title" for="product">Image URL: </label>
+            <textarea class="input" ows="5" cols="30" pInputTextarea [autoResize]="true" id="product.name"
+                id="product.imageURL" [(ngModel)]="product.imageURL" placeholder="URL" required></textarea>
+        </div>
+    </div>
 
-
-    <br><br><br>
-    <button type="button" (click)="goBack()">go back</button>
-    <button type="button" (click)="save()">save</button>
-    <button type="button" class="delete" title="delete product" (click)="delete()">x</button>
 </div>

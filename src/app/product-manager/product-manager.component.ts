@@ -22,6 +22,7 @@ export class ProductManagerComponent {
     this.getWarehouse();
   }
 
+  //gets warehouse
   getWarehouse(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.id = id;
@@ -29,11 +30,13 @@ export class ProductManagerComponent {
       .subscribe(product => this.product = product);
   }
 
+  //go back to last page
   goBack(): void {
     window.location.reload();
     this.location.back();
   }
 
+  //save the product updates
   save(): void {
     if (this.product) {
       this.productService.updateProduct(this.product, this.id)
@@ -44,6 +47,7 @@ export class ProductManagerComponent {
     }
   }
 
+    //deletes the product
     delete (): void {
       if(this.product !== undefined){
       this.productService.deleteProduct(this.product.productId).subscribe();

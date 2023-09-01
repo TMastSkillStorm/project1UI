@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/primeng.css";
+@import "primeng/resources/themes/md-dark-deeppurple/theme.css";
+@import "primeicons/primeicons.css";
+
+body {
+    font-family: var(--font-family);
+}
+
+.form{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.inputBox{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title{
+    width: 150px;
+    float:right
+}
+
+.navButton{
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+

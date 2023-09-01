@@ -20,11 +20,13 @@ export class ProductCreateComponent {
   ngOnInit(): void {
   }
 
+  //go back a page
   goBack(): void {
     window.location.reload();
     this.location.back();
   }
 
+  //call to add a new product
   add(name: string,description: string, imageURL: string): void {
     name = name.trim();
     if (!name||!description||!imageURL) { return; }

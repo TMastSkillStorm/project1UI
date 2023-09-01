@@ -1,19 +1,57 @@
 <div *ngIf="warehouse">
-    <h1>Manage {{warehouse?.name}} Warehouse</h1>
-    <div>
-        <label for="warehouse">Name: </label>
-        <input id="warehouse.name" [(ngModel)]="warehouse.name" placeholder="Warehouse" />
-        <label for="warehouse">Capacity: </label>
-        <input id="warehouse.capacity" [(ngModel)]="warehouse.capacity" placeholder="100" />
-        <label for="warehouse">City: </label>
-        <input id="warehouse.city" [(ngModel)]="warehouse.city" placeholder="City" />
-        <label for="warehouse">Country: </label>
-        <input id="warehouse.country" [(ngModel)]="warehouse.country" placeholder="Country" />
+    <!--navigation, save, and delete buttons-->
+    <h2>Manage {{warehouse?.name}}</h2>
+    <p-button label="Back to Warehouses" styleClass="p-button-outlined" class="navButton" (click)="goBack()"
+        icon="pi pi-caret-left"></p-button>
+    <p-button label="Save Changes" styleClass="p-button-outlined p-button-secondary" class="navButton" (click)="save()"
+        icon="pi pi-save"></p-button>
+    <p-button label="Delete" styleClass="p-button-outlined p-button-danger" class="navButton" (click)="delete()"
+        icon="pi pi-trash"></p-button>
+
+    <!--field to edit warehouse-->
+    <div class="form">
+        <div class="inputBox">
+            <label class="title" for="warehouse">Name: </label>
+            <input class="input" id="warehouse.name" [(ngModel)]="warehouse.name" placeholder="Warehouse" pInputText
+                required />
+        </div>
+        <div class="inputBox">
+            <label class="title" for="warehouse">Capacity: </label>
+            <p-inputNumber class="input" id="warehouse.capacity" [(ngModel)]="warehouse.capacity"
+                placeholder="Enter a number"></p-inputNumber>
+        </div>
+        <div class="inputBox">
+            <label class="title" for="warehouse">City: </label>
+            <input class="input" id="warehouse.city" [(ngModel)]="warehouse.city" placeholder="city" pInputText
+                required />
+        </div>
+        <div class="inputBox">
+            <label class="title" for="warehouse">Country: </label>
+            <input class="input" id="warehouse.country" [(ngModel)]="warehouse.country" placeholder="Country" pInputText
+                required />
+        </div>
     </div>
 
 
-    <br><br><br>
-    <button type="button" (click)="goBack()">go back</button>
-    <button type="button" (click)="save()">save</button>
-    <button type="button" class="delete" title="delete warehouse" (click)="delete()">x</button>
+    <!--feild to edit stock of each item in warehouse-->
+    <br>
+    <h2>Stock of Products in {{warehouse.name}}</h2>
+    <div *ngFor="let stock of stockMock" class="form">
+        <div class="inputBox">
+            <label class="title" for="stock">{{stock.productName}}: </label>
+            <p-inputNumber class="input" [(ngModel)]="stock.stock" placeholder="number"></p-inputNumber>
+        </div>
+    </div>
+
+    <!--error modal-->
+    <p-dialog header="Warning: Max Capacity Exceeded" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+        [draggable]="false" [resizable]="false">
+        <p class="m-0" >
+            {{warehouse.name}} is unable to hold {{totalStock}} products. Current limit in this warehouse is
+            {{warehouse.capacity}}. Either click the button to make a new warehouse, change {{warehouse.name}} capcity,
+            or change the stock of the individual products.
+        </p>
+        <p-button label="Create New Warehouse" styleClass="p-button-outlined p-button-secondary" class="navButton" routerLink="/warehouses/create" icon="pi pi-file-edit"></p-button>
+
+    </p-dialog>
 </div>

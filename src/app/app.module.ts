@@ -11,6 +11,16 @@ import { WarehouseCreateComponent } from './warehouse-create/warehouse-create.co
 import { ProductsComponent } from './products/products.component';
 import { ProductManagerComponent } from './product-manager/product-manager.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DialogModule } from 'primeng/dialog';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +38,15 @@ import { ProductCreateComponent } from './product-create/product-create.componen
     AppRoutingModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ButtonModule,
+    InputTextModule,
+    TableModule,
+    InputNumberModule,
+    InputTextareaModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

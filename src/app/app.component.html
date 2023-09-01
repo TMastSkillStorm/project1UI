@@ -1,12 +1,12 @@
-<h1>{{title}}</h1>
 <nav>
-    <a routerLink="home">Home</a>
-    <a routerLink="warehouses">Warehouses</a>
-    <a routerLink="products">Products</a>
-
+    <!--navigation buttons and logo that is present throughout the entire app-->
+    <p-button label="Home" styleClass="p-button-outlined" routerLink="home" class="navButton" icon="pi pi-home"></p-button>
+    <p-button label="Warehouses" styleClass="p-button-outlined" class="navButton" routerLink="/warehouses"
+        icon="pi pi-building"></p-button>
+    <p-button label="Products" styleClass="p-button-outlined" routerLink="/products" class="navButton" icon="pi pi-gift"></p-button>
 </nav>
 <div>
-    <h1> <img class="images" src="../assets/logo.png" alt="Bear Logo" id="logo" width="60px" height="60px"> Bear House
+    <h1> <img class="images" src="../assets/logo.png" alt="Bear Logo" id="logo"> Bear House
         Inc</h1>
 </div>
 <router-outlet></router-outlet>

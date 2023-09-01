@@ -1,14 +1,29 @@
 <div>
-    <h1>Create Warehouse</h1>
-    <form>
-        Name: <input ng-model="name" #name placeholder="Warehouse">
-        Capacity: <input ng-model="capacity" #capacity placeholder="100">
-        City: <input ng-model="city" #city placeholder="City">
-        Country: <input ng-model="country" #country placeholder="Country">
+    <!--navigation and creation buttons-->
+    <h2>Create Warehouse</h2>
+    <p-button label="Back to Warehouses" styleClass="p-button-outlined" class="navButton" (click)="goBack()"
+        icon="pi pi-caret-left"></p-button>
+    <p-button label="Create New Warehouse" class="navButton" styleClass="p-button-outlined p-button-secondary"
+        (click)="add(name.value, capacity.value, city.value, country.value)" icon="pi pi-save"></p-button>
 
+        <!--field to enter new warehouse info-->
+    <form class="form">
+        <div class="inputBox"> <p class="title">Name:</p> 
+            <input class="input" ng-model="name" #name placeholder="Warehouse" type="text"
+                pInputText required>
+        </div>
+        <div class="inputBox"> <p class="title">Capacity:</p> 
+            <p-inputNumber class="input" ng-model="capacity" inputId="integeronly"
+                #capacity placeholder="Must be a number">
+            </p-inputNumber>
 
-    <br><br><br>
-    <button type="button" (click)="goBack()">go back</button>
-    <button type="button" (click)="add(name.value, capacity.value, city.value, country.value)">Create</button>
-</form>
+        </div>
+        <div class="inputBox"> <p class="title">City:</p> 
+            <input class="input" ng-model="city" #city placeholder="City" required type="text"
+                pInputText>
+        </div>
+        <div class="inputBox"> <p class="title">Country:</p> <input class="input" ng-model="country" #country placeholder="Country"
+                type="text" pInputText required>
+        </div>
+    </form>
 </div>

@@ -1,13 +1,22 @@
 <div>
-    <h1>Create Product</h1>
-    <form>
-        Name: <input ng-model="name" #name placeholder="Name">
-        Description: <input ng-model="description" #description placeholder="Info">
-        Image URL: <input ng-model="imageURL" #URL placeholder="URL">
+    <h2>Create Product</h2>
+    <!--Buttons to go back a page or to save the product being created-->
+    <p-button label="Back to Products" styleClass="p-button-outlined" class="navButton" (click)="goBack()"
+        icon="pi pi-caret-left"></p-button>
+    <p-button label="Create New Product" styleClass="p-button-outlined p-button-secondary" class="navButton" 
+        (click)="add(name.value, description.value, URL.value)" icon="pi pi-save"></p-button>
 
 
-    <br><br><br>
-    <button type="button" (click)="goBack()">go back</button>
-    <button type="button" (click)="add(name.value, description.value, URL.value)">Create</button>
-</form>
+    <!--Input for new product being created-->
+    <form class="form">
+        <div class="inputBox"><p class="title">Name:</p> <input class="input" ng-model="name" #name placeholder="Bear Name" type="text"
+                pInputText required>
+        </div>
+        <div class="inputBox"><p class="title">Description:</p> <textarea class="input" rows="5" cols="30" pInputTextarea [autoResize]="true"
+                ng-model="description" #description placeholder="Info" type="text" required></textarea>
+        </div>
+        <div class="inputBox"><p class="title">Image URL:</p> <textarea class="input" rows="5" cols="30" pInputTextarea [autoResize]="true"
+                g-model="imageURL" #URL placeholder="URL" type="text" required></textarea>
+        </div>
+    </form>
 </div>
